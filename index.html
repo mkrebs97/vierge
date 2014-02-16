@@ -1,0 +1,223 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vierge&#8482; Mobile Health App</title>
+<link href="http://www.makadestudios.com/vierge/jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+      function validateForm()
+	  {var x=document.forms["bpForm"]["systolic_slider"].value;
+	  if (x<=119)
+	  { 
+	  window.open("video-good-blood-pressure.html","_parent" );
+      return true ;
+	  }
+	  else if (x>=181)
+	  {
+	  window.open("call-911.html","_parent" );
+	  }
+	  else 
+		{
+		window.open("video-high-blood-pressure.html","_parent" );
+      return false ;
+	   }
+	  }
+    </script> <!--END BLOOD PRESSURE validateForm JAVASCRIPT -->
+
+<script src="http://www.makadestudios.com/vierge/jquery-1.5.min.js" type="text/javascript"></script>
+<script src="http://www.makadestudios.com/vierge/jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
+<!-- This reference to phonegap.js will allow for code hints as long as the current site has been configured as a mobile application. 
+	 To configure the site as a mobile application, go to Site -> Mobile Applications -> Configure Application Framework... -->    
+<script src="http://www.makadestudios.com/vierge/phonegap.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+  //reset type=date inputs to text
+  $( document ).bind( "mobileinit", function(){
+    $.mobile.page.prototype.options.degradeInputs.date = true;
+  }); </script>
+  
+<!-- END javascript for calender feature -->
+</head> 
+<body> 
+
+<div data-role="page" id="homepage">
+	<div data-role="header">
+		<h1>Vierge&#8482; Mobile Health App (BETA)</h1>
+	</div>
+	<div data-role="content">	
+		<ul data-role="listview">
+			<li><a href="check-blood-sugar.html" target="_parent">Diabetes Checkup</a></li>
+            <li><a href="#bloodpressure">Blood Pressure Check</a></li>
+			<li><a href="#wellness">Wellness Coach</a></li>
+            <li><a href="#wellness">Set Appointments</a></li>
+            <li><a href="#wellness">How Are You Feeling?</a></li>
+            <li><a href="#wellness">Review Health History</a></li>
+		</ul>		
+	</div>
+	<div data-role="footer">
+		<h4>Tap Menu To Get Healthy!</h4>
+	</div>
+</div>
+
+<!--BEGIN BLOOD PRESSURE FORM -->
+<div data-role="page" id="bloodpressure">
+    <div data-role="header">
+		<script type="text/javascript">
+        var x="systolic_slider"
+		var y="diastolic_slider"
+        </script>
+        <h1>Blood Pressure Check</h1>
+	</div>
+	<div data-role="content">
+    <div data-role="fieldcontain" id="bpcheck">
+     <form name="bpForm"  action="form-process.php" onsubmit="return validateForm()" method="post">
+        <label for="textinput" name="systolic_slider" value"0"><strong>Systolic Number:</strong><br>(Top Number)</label>
+        <input type="text" name="systolic_slider" id="systolic_slider" value="0" min="0" max="200" />
+        <label for="textinput" name="diastolic_slider" value"0"><strong>Diastolic Number:</strong><br>(Bottom Number)</label>
+        <input type="text" name="diastolic_slider" id="diastolic_slider" value="0" min="0" max="200" />
+      <input type="submit" button data-icon="forward" data-iconpos="right" onsubmit="return validateForm()" method="Submit">DONE</button>
+      </form>
+      </div> <!-- end modified form -->
+    
+	<div data-role="footer">
+		<h4>Vierge&#8482; Mobile Health</h4>
+	</div>
+</div></div>
+
+<!-- BEGIN WELLNESS PAGE -->
+<div data-role="page" id="wellness">
+	<div data-role="header">
+		<h1>Wellness Coach</h1>
+	</div>
+	<div data-role="content">
+      <div data-role="fieldcontain">
+        <ul data-role="listview" data-split-icon="arrow-r">
+          <li><a href="#fooddiary">Food Diary</a><a href="#">Food Diary</a></li>
+          <li><a href="#workout">Workout</a><a href="#">Workout</a></li>
+          <li><a href="#coach">See Coach</a><a href="#">See Coach</a></li>
+          <li><a href="#appointments">Set Appointments</a><a href="#">Set Appointments</a></li>
+        </ul>
+       
+      </div>
+    </div>
+	<div data-role="footer">
+		<h4>Vierge&#8482; Mobile Health</h4>
+	</div>
+</div>
+<div data-role="page" id="fooddiary">
+<link rel="stylesheet" href="jquery.ui.datepicker.mobile.css" type="text/css"/> 
+  <script src="http://www.makadestudios.com/vierge/jQuery.ui.datepicker.js"></script>
+  <script src="http://www.makadestudios.com/vierge/jquery.ui.datepicker.mobile.js"></script>
+  <div data-role="header">
+    <h1>Food Diary</h1>
+  </div>
+  <div data-role="fieldcontain">
+<label for="date">Date:</label>
+<input type="date" name="date" id="date" value=""  />
+  </div>
+  <div data-role="fieldcontain">
+ <div data-role="collapsible-set">
+    <div data-role="collapsible">
+      <h3>Breakfast</h3>
+      <p><label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="breakfastdrink">
+      <option value="option1">Drink</option>
+      <option value="option2">None</option>
+      <option value="option3">Water</option>
+      <option value="option4">Coffee</option>
+      <option value="option5">Soda</option>
+      <option value="option6">Milk</option>
+      <option value="option7">Juice</option>
+      <option value="option8">Alcohol</option>
+    </select></p>
+
+      <p><label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="breakfastmeal">
+      <option value="option1">Main Meal</option>
+      <option value="option2">Beef</option>
+      <option value="option3">Chicken</option>
+      <option value="option4">Pork</option>
+      <option value="option5">Milk</option>
+      <option value="option6">Juice</option>
+      <option value="option7">Alcohol</option>
+    </select></p>
+    </div>
+    <div data-role="collapsible" data-collapsed="true">
+      <h3>Lunch</h3>
+      <p><label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="lunchdrink">
+      <option value="option1">Drink</option>
+      <option value="option2">None</option>
+      <option value="option3">Water</option>
+      <option value="option4">Coffee</option>
+      <option value="option5">Soda</option>
+      <option value="option6">Milk</option>
+      <option value="option7">Juice</option>
+      <option value="option8">Alcohol</option>
+    </select></p>
+    </div>
+    <div data-role="collapsible" data-collapsed="true">
+      <h3>Dinner</h3>
+      <p><label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="dinnerdrink">
+      <option value="option1">Drink</option>
+      <option value="option2">None</option>
+      <option value="option3">Water</option>
+      <option value="option4">Coffee</option>
+      <option value="option5">Soda</option>
+      <option value="option6">Milk</option>
+      <option value="option7">Juice</option>
+      <option value="option8">Alcohol</option>
+    </select></p>
+    </div>
+        <div data-role="collapsible" data-collapsed="true">
+      <h3>Snacks</h3>
+      <p><label for="selectmenu" class="select"></label>
+    <select name="selectmenu" id="snackdrink">
+      <option value="option1">Drink</option>
+      <option value="option2">None</option>
+      <option value="option3">Water</option>
+      <option value="option4">Coffee</option>
+      <option value="option5">Soda</option>
+      <option value="option6">Milk</option>
+      <option value="option7">Juice</option>
+      <option value="option8">Alcohol</option>
+    </select></p>
+    </div>
+  </div>
+  </div>
+<div data-role="footer">
+    <h4>Vierge&#8482; Mobile Health</h4>
+  </div>
+</div>
+<div data-role="page" id="appointment">
+  <div data-role="header">
+    <h1>Apointment Reminder</h1>
+  </div>
+  <div data-role="content">Content</div>
+  <div data-role="footer">
+    <h4>Vierge&#8482; Mobile Health</h4>
+  </div>
+</div>
+<div data-role="page" id="symptoms">
+  <div data-role="header">
+    <h1>How Are You Feeling?</h1>
+  </div>
+  <div data-role="content">Content</div>
+  <div data-role="footer">
+    <h4>Vierge&#8482; Mobile Health</h4>
+  </div>
+</div>
+<div data-role="page" id="history">
+  <div data-role="header">
+    <h1>Review Health History</h1>
+  </div>
+  <div data-role="content">Content</div>
+  <div data-role="footer">
+    <h4>Vierge&#8482; Mobile Health</h4>
+  </div>
+</div>
+</body>
+</html>
