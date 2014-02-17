@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Vierge&#8482; Mobile Health App</title>
+<link href="jquery.mobile-1.0a3.min.css" rel="stylesheet" type="text/css"/>
+  <!-- BEGIN Blood SUGAR validate Form JAVASCRIPT -->  
+  <script type="text/javascript">
+      function validateForm()
+	  {var x=document.forms["sugarForm"]["fastingsugar_input"].value;
+	  if (x<=100)
+	  { 
+	  window.open("video-good-blood-sugar.html","_parent" );
+      return true ;
+	  }
+	  else if (x>=400)
+	  {
+	  window.open("call-911.html","_parent" );
+	  }
+	  else 
+		{
+		window.open("video-high-sugar.html","_parent" );
+      return false ;
+	   }
+	  }
+    </script> <!-- END BLOOD SUGAR VALIDATE FUNCTION -->
+<script src="jquery-1.5.min.js" type="text/javascript"></script>
+<script src="jquery.mobile-1.0a3.min.js" type="text/javascript"></script>
+<!-- This reference to phonegap.js will allow for code hints as long as the current site has been configured as a mobile application. 
+	 To configure the site as a mobile application, go to Site -> Mobile Applications -> Configure Application Framework... -->    
+<script src="phonegap.js" type="text/javascript"></script>
+</head> 
+<body> 
+
+<div data-role="page" id="diabetes">
+	<div data-role="header">
+		<h1>Blood Sugar Checkup</h1>
+	</div>
+    <script type="text/javascript">
+        var x="fastingsugar_input"
+		var y="postmealbloodsugar"
+		var z="randombloodsugar"
+        </script>
+	<div data-role="content">  
+        <div data-role="fieldcontain">
+         <form name="sugarForm"  action="http://www.makadestudios.com/vierge/sugar-form-process.php" onsubmit="return validateForm()" method="post">
+         <label for="fastingsugar_input" class="input"><strong>Fasting Blood Sugar:</strong><br>
+        (8 Hrs. After Meal)</label>
+          <input type="text" name="fastingsugar_input" id="fastingsugar_input" value="0" min="0" max="500" />
+        <div data-role="fieldcontain">
+          <label for="selectmenu" class="select"><strong>Post-Meal Blood Sugar:</strong><br>
+        (2 Hrs. After Start Of Meal)</label>
+          <input type="text" name="postmealbloodsugar" id="postmealsugar_input" value="0" min="0" max="500" />
+        </div>
+        <div data-role="fieldcontain">
+          <label for="selectmenu" class="select"><strong>Random Blood Sugar:</strong><br>
+(Anytime)</label>
+          <input type="text" name="randombloodsugar" id="randomsugar_input" value="0" min="0" max="500" />
+        </div>
+ 	<input name="submit" type="submit" id="submit" value="DONE" data-icon="forward" data-iconpos="right" button onsubmit="return validateForm()" method="post"></button>
+      </form>
+      </div>
+	<div data-role="footer">
+		<h4>Vierge&#8482; Mobile Health</h4>
+	</div>
+    </div>
+</div>
+</body>
+</html>
